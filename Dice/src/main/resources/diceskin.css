@@ -1,3 +1,8 @@
-.custom-control{
-    -fx-skin: "CustomSkin";
+.dice{
+    -fx-skin: "Dice";
+    -fx-text-fill: #006464;
+    -fx-background-color: #DFB951;
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
+    -fx-padding: 5;
 }

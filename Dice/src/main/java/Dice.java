@@ -1,6 +1,9 @@
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Control;
 import javafx.scene.control.Labeled;
+import javafx.scene.image.ImageView;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -15,13 +18,15 @@ public class Dice extends AbstractDice {
         sides = 6;
     }
 
-    public Dice(int width, int height, String text,int sides) {
+    public Dice(int width, int height ,int sides) {
         this.width = width;
         this.height = height;
-        setText(text);
         this.sides = sides;
-        getStylesheets().add(getClass().getResource("diceskin.css").toExternalForm());
-        getStyleClass().setAll("CustomSkin");
+        setPrefSize(width,height);
+        Canvas canvas = new Canvas(width,height);
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        //ImageView imageView = new ImageView(canvas);
+        drawSides(gc);
         //zoverriduj getStyleClass i getUserAgentStylesheet
     }
     public int random(){
