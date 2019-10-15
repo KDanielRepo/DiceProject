@@ -1,20 +1,19 @@
+import javafx.scene.SnapshotParameters;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Control;
 import javafx.scene.control.Labeled;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Dice extends AbstractDice {
-    private int width;
-    private int height;
-    private int sides;
-
     public Dice() {
-        width = 100;
-        height = 100;
+        width = 500;
+        height = 500;
         sides = 6;
     }
 
@@ -22,15 +21,22 @@ public class Dice extends AbstractDice {
         this.width = width;
         this.height = height;
         this.sides = sides;
+        random();
+        System.out.println(random);
+        setOnAction(actionEvent ->{
+            Canvas canvas = new Canvas(width,height);
+            GraphicsContext gc = canvas.getGraphicsContext2D();
+            drawSides(gc,sides,random);
+            Image image = canvas.snapshot(new SnapshotParameters(),new WritableImage(width,height));
+            ImageView imageView = new ImageView(image);
+            setGraphic(imageView);
+            random();
+        });
+        fire();
         setPrefSize(width,height);
-        Canvas canvas = new Canvas(width,height);
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-        //ImageView imageView = new ImageView(canvas);
-        drawSides(gc);
-        //zoverriduj getStyleClass i getUserAgentStylesheet
     }
     public int random(){
-        int random = ThreadLocalRandom.current().nextInt(1, sides+1);
+        random = ThreadLocalRandom.current().nextInt(1, sides+1);
         return random;
     }
 }
