@@ -8,8 +8,8 @@ import javafx.stage.Stage;
 public class DiceUI extends Application {
     public void start(Stage primaryStage) throws Exception {
         BorderPane borderPane = new BorderPane();
-        borderPane.setPrefSize(100,800);
-        Dice dice = new Dice(400,400,6);
+        borderPane.setPrefSize(1000,800);
+        Dice dice = new Dice(400,400,8);
         FlowPane flowPane = new FlowPane();
         Button result = new Button("result");
         result.setOnAction(actionEvent ->{
